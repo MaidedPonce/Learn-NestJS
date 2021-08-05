@@ -10,9 +10,9 @@ export class UsersController {
         return this.userServices.findAll()       
     }
 
-    @Get('/:id')
+    @Get('/:id/orders')
     getOne(@Param('id', ParseIntPipe) id: number) {
-        return this.userServices.findOne(id);
+        return this.userServices.getOrdersByUser(id);
     }
 
     @Post()

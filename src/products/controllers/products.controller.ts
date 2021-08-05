@@ -1,6 +1,9 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { CreateProductDto, UpdateProductDto } from '../dtos/products.dto';
 import { ProductsService } from '../services/products.service'
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
+
+@ApiTags('products')
 @Controller('products')
 export class ProductsController {
     constructor(private productsService: ProductsService){}
@@ -11,6 +14,7 @@ export class ProductsController {
     }
 
     @Get('/:id')
+    @ApiOperation({ summary: 'Get product id'})
     getOne(@Param('id', ParseIntPipe) id: number) {
         return this.productsService.findOne(id);
     }
